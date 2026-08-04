@@ -1,0 +1,1658 @@
+/* HydroGuard - Hydro Theme Enhancements
+ * Immersive water-themed animations and effects
+ */
+
+:root {
+  --hydro-primary: #0ea5b7;
+  --hydro-secondary: #06b6d4;
+  --hydro-accent: #22d3ee;
+  --hydro-deep: #0891b2;
+  --hydro-light: #67e8f9;
+  --hydro-ripple: rgba(14, 165, 183, 0.15);
+  --hydro-glow: rgba(6, 182, 212, 0.3);
+}
+
+[data-theme="dark"] {
+  --hydro-primary: #22d3ee;
+  --hydro-secondary: #06b6d4;
+  --hydro-accent: #67e8f9;
+  --hydro-deep: #0891b2;
+  --hydro-light: #a5f3fc;
+  --hydro-ripple: rgba(34, 211, 238, 0.15);
+  --hydro-glow: rgba(6, 182, 212, 0.35);
+}
+
+/* Animated water-like background */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 100% -10%, rgba(14, 165, 183, 0.22), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(6, 182, 212, 0.18), transparent 45%),
+    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(34, 211, 238, 0.08), transparent 40%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+  z-index: -2;
+  animation: water-drift 20s ease-in-out infinite;
+}
+
+[data-theme="dark"] body::before {
+  background: 
+    radial-gradient(ellipse 80% 50% at 100% -10%, rgba(34, 211, 238, 0.15), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(6, 182, 212, 0.12), transparent 45%),
+    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(34, 211, 238, 0.06), transparent 40%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
+@keyframes water-drift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-2%) translateY(-1%);
+  }
+  50% {
+    transform: translateX(1%) translateY(2%);
+  }
+  75% {
+    transform: translateX(2%) translateY(-1%);
+  }
+}
+
+/* Floating bubble particles */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, var(--hydro-ripple) 1px, transparent 1px),
+    radial-gradient(circle at 60% 70%, var(--hydro-ripple) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, var(--hydro-ripple) 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, var(--hydro-ripple) 1px, transparent 1px),
+    radial-gradient(circle at 10% 90%, var(--hydro-ripple) 1px, transparent 1px),
+    radial-gradient(circle at 90% 50%, var(--hydro-ripple) 1px, transparent 1px);
+  background-size: 200px 200px, 250px 250px, 180px 180px, 220px 220px, 190px 190px, 240px 240px;
+  animation: bubble-float 25s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes bubble-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+    opacity: 0.8;
+  }
+}
+
+/* Enhanced hero section with water waves */
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230ea5b7' fill-opacity='0.08' d='M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,176C960,192,1056,192,1152,165.3C1248,139,1344,85,1392,58.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom / cover;
+  animation: wave-undulate 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes wave-undulate {
+  0%, 100% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-2%) scaleY(1.02);
+  }
+}
+
+/* Enhanced sidebar with water flow effect */
+.sidebar {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(175deg, var(--sidebar-from), var(--sidebar-to)),
+    radial-gradient(circle at 20% 0%, rgba(46, 211, 198, 0.18), transparent 42%);
+  z-index: 0;
+}
+
+[data-theme="dark"] .sidebar::before {
+  background: 
+    linear-gradient(175deg, var(--sidebar-from), var(--sidebar-to)),
+    radial-gradient(circle at 20% 0%, rgba(34, 211, 238, 0.15), transparent 42%);
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(46, 211, 198, 0.03) 60deg,
+    transparent 120deg,
+    rgba(14, 165, 183, 0.05) 180deg,
+    transparent 240deg,
+    rgba(34, 211, 238, 0.04) 300deg,
+    transparent 360deg
+  );
+  animation: water-swirl 30s linear infinite;
+  z-index: 0;
+}
+
+[data-theme="dark"] .sidebar::after {
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(34, 211, 238, 0.06) 60deg,
+    transparent 120deg,
+    rgba(22, 211, 238, 0.08) 180deg,
+    transparent 240deg,
+    rgba(103, 232, 249, 0.06) 300deg,
+    transparent 360deg
+  );
+}
+
+@keyframes water-swirl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sidebar > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Water ripple effect on buttons */
+button:hover,
+.button-link:hover {
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover::before,
+.button-link:hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: button-ripple 0.6s ease-out;
+}
+
+@keyframes button-ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+/* Click ripple effect */
+button:active::after,
+.button-link:active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: click-ripple 0.4s ease-out;
+}
+
+@keyframes click-ripple {
+  to {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
+/* Bubble hover effect on interactive elements */
+a:hover {
+  position: relative;
+}
+
+a:hover::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--hydro-primary), var(--hydro-accent));
+  animation: bubble-expand 0.3s ease forwards;
+}
+
+@keyframes bubble-expand {
+  to {
+    width: 100%;
+  }
+}
+
+/* Floating bubble particles on cursor move (optional enhancement) */
+.hydro-bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.hydro-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.3), transparent);
+  animation: bubble-float-up 2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes bubble-float-up {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Card hover with fluid effect */
+.card {
+  position: relative;
+  overflow: hidden;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.88) 50%,
+      rgba(240, 250, 255, 0.92) 100%
+    );
+  border: 1px solid rgba(14, 165, 183, 0.15);
+}
+
+[data-theme="dark"] .card {
+  background: 
+    linear-gradient(135deg, 
+      rgba(15, 30, 46, 0.95) 0%, 
+      rgba(15, 30, 46, 0.88) 50%,
+      rgba(20, 40, 60, 0.92) 100%
+    );
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+.card-top-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--hydro-deep), var(--hydro-primary), var(--hydro-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-top-border {
+  opacity: 1;
+}
+
+.card:hover {
+  border-color: rgba(14, 165, 183, 0.3);
+  box-shadow: 
+    0 16px 44px rgba(8, 48, 72, 0.1),
+    0 0 0 1px rgba(14, 165, 183, 0.2),
+    0 0 20px rgba(14, 165, 183, 0.1);
+}
+
+[data-theme="dark"] .card:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 
+    0 16px 44px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(34, 211, 238, 0.3),
+    0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+.card-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(14, 165, 183, 0.05),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .card-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 211, 238, 0.08),
+    transparent
+  );
+}
+
+.card:hover .card-shimmer {
+  opacity: 1;
+  animation: card-shimmer 0.8s ease;
+}
+
+@keyframes card-shimmer {
+  to {
+    left: 100%;
+  }
+}
+
+/* Card entrance animation */
+.card {
+  animation: card-rise 0.5s ease-out;
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered card animations */
+.card-grid .card:nth-child(1) { animation-delay: 0.1s; }
+.card-grid .card:nth-child(2) { animation-delay: 0.2s; }
+.card-grid .card:nth-child(3) { animation-delay: 0.3s; }
+.card-grid .card:nth-child(4) { animation-delay: 0.4s; }
+.card-grid .card:nth-child(5) { animation-delay: 0.5s; }
+.card-grid .card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Water droplet effect on card hover */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.03) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Metric card special effects */
+.metric-card {
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.98) 0%, 
+      rgba(240, 250, 255, 0.95) 100%
+    );
+  border: 1px solid rgba(14, 165, 183, 0.2);
+}
+
+.metric-card::before {
+  background: linear-gradient(90deg, var(--hydro-deep), var(--hydro-accent));
+}
+
+.metric-card:hover .metric {
+  animation: metric-pulse 0.6s ease;
+  background: linear-gradient(135deg, var(--hydro-deep), var(--hydro-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes metric-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Progress bar enhanced animation */
+.metric-card:hover .progress-track span {
+  animation: progress-glow 1s ease;
+}
+
+@keyframes progress-glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+/* Enhanced card content styling */
+.card h2, .card h3 {
+  position: relative;
+  z-index: 1;
+}
+
+.card p {
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative water drop on cards */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+/* Decorative corner waves on cards */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: 
+    radial-gradient(circle at 100% 0%, rgba(14, 165, 183, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+  border-radius: 0 16px 0 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Floating bubble decoration on cards (added via CSS) */
+.card .bubble-decoration {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.3), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float-bubble 4s ease-in-out infinite;
+}
+
+.card .bubble-decoration:nth-child(1) {
+  top: 20%;
+  right: 15%;
+  animation-delay: 0s;
+}
+
+.card .bubble-decoration:nth-child(2) {
+  top: 60%;
+  right: 10%;
+  width: 5px;
+  height: 5px;
+  animation-delay: -1.5s;
+}
+
+.card .bubble-decoration:nth-child(3) {
+  top: 40%;
+  right: 20%;
+  width: 6px;
+  height: 6px;
+  animation-delay: -3s;
+}
+
+@keyframes float-bubble {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Status pill enhancement */
+.pill {
+  position: relative;
+  overflow: hidden;
+}
+
+.pill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.pill:hover::before {
+  left: 100%;
+}
+
+/* Enhanced tank water animation */
+.tank-water {
+  background: 
+    linear-gradient(180deg, 
+      rgba(61, 214, 198, 0.9) 0%, 
+      rgba(26, 155, 184, 0.95) 55%, 
+      rgba(11, 110, 138, 1) 100%
+    );
+  position: relative;
+  overflow: hidden;
+}
+
+.tank-water::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+  animation: water-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes water-shimmer {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+}
+
+/* Enhanced wave animation */
+.tank-wave {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+  animation: enhanced-wave 3s ease-in-out infinite;
+}
+
+@keyframes enhanced-wave {
+  0%, 100% {
+    transform: translateX(0) translateY(0) scaleY(1);
+  }
+  25% {
+    transform: translateX(3%) translateY(-2px) scaleY(1.1);
+  }
+  50% {
+    transform: translateX(0) translateY(0) scaleY(1);
+  }
+  75% {
+    transform: translateX(-3%) translateY(2px) scaleY(0.9);
+  }
+}
+
+/* Additional wave layer for more realistic effect */
+.tank-water .tank-wave:nth-child(2) {
+  animation-delay: -1.5s;
+  opacity: 0.7;
+}
+
+/* Bubble particles in tank */
+.tank-water::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 20%;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: tank-bubble 4s ease-in-out infinite;
+  box-shadow: 
+    30px -20px 0 rgba(255, 255, 255, 0.4),
+    -20px -40px 0 rgba(255, 255, 255, 0.5),
+    50px -60px 0 rgba(255, 255, 255, 0.3),
+    40px -80px 0 rgba(255, 255, 255, 0.2),
+    -10px -100px 0 rgba(255, 255, 255, 0.3);
+}
+
+@keyframes tank-bubble {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-30px) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+/* Additional rising bubbles */
+.tank-shell {
+  position: relative;
+}
+
+.tank-shell::before {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 30%;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: bubble-rise 3s ease-in-out infinite;
+  animation-delay: -1s;
+}
+
+.tank-shell::after {
+  content: '';
+  position: absolute;
+  bottom: 40px;
+  left: 60%;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: bubble-rise 4s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Enhanced pipe flow animation */
+.tank-pipe.active-flow .pipe-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.tank-pipe.active-flow .pipe-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 211, 238, 0.6),
+    transparent
+  );
+  animation: pipe-flow 1.5s linear infinite;
+}
+
+@keyframes pipe-flow {
+  to {
+    left: 100%;
+  }
+}
+
+/* Additional pipe flow layers */
+.tank-pipe.active-flow .pipe-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(14, 165, 183, 0.8),
+    transparent
+  );
+  animation: pipe-flow-secondary 1.2s linear infinite;
+  animation-delay: -0.3s;
+}
+
+@keyframes pipe-flow-secondary {
+  to {
+    left: 100%;
+  }
+}
+
+/* Water flow particles */
+.water-flow-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.8), rgba(14, 165, 183, 0.4));
+  border-radius: 50%;
+  animation: flow-particle-move 2s linear infinite;
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.5);
+}
+
+@keyframes flow-particle-move {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20px, 20px);
+    opacity: 0;
+  }
+}
+
+/* Multiple particles for enhanced effect */
+.tank-pipe.active-flow .pipe-line .water-flow-particle:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+
+.tank-pipe.active-flow .pipe-line .water-flow-particle:nth-child(2) {
+  animation-delay: -0.4s;
+  left: 30%;
+  width: 4px;
+  height: 4px;
+}
+
+.tank-pipe.active-flow .pipe-line .water-flow-particle:nth-child(3) {
+  animation-delay: -0.8s;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+}
+
+.tank-pipe.active-flow .pipe-line .water-flow-particle:nth-child(4) {
+  animation-delay: -1.2s;
+  left: 70%;
+  width: 3px;
+  height: 3px;
+}
+
+/* Pipe glow effect when active */
+.tank-pipe.active-flow {
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+}
+
+/* Direction-specific animations */
+.particle-down {
+  animation: flow-particle-down 1.5s linear infinite;
+}
+
+@keyframes flow-particle-down {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+.particle-right {
+  animation: flow-particle-right 1.5s linear infinite;
+}
+
+@keyframes flow-particle-right {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+}
+
+/* Refill splash effect */
+.refill-ripples {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  background: radial-gradient(ellipse, rgba(34, 211, 238, 0.6), transparent 70%);
+  animation: splash 1s ease-out infinite;
+}
+
+@keyframes splash {
+  0% {
+    transform: translateX(-50%) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Pump pulse effect */
+.pump-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--hydro-accent);
+  border-radius: 50%;
+  animation: pump-pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--hydro-glow);
+}
+
+@keyframes pump-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+/* Usage pulse effect */
+.usage-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--hydro-deep);
+  border-radius: 50%;
+  animation: usage-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--hydro-glow);
+}
+
+@keyframes usage-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Progress bar with water flow effect */
+.progress-track span {
+  background: linear-gradient(
+    90deg,
+    var(--hydro-deep),
+    var(--hydro-primary),
+    var(--hydro-accent),
+    var(--hydro-primary),
+    var(--hydro-deep)
+  );
+  background-size: 200% 100%;
+  animation: progress-flow 3s linear infinite;
+}
+
+@keyframes progress-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Enhanced status indicators with glow */
+.dot-label.online span {
+  box-shadow: 0 0 8px var(--hydro-glow);
+}
+
+/* Ripple effect on cards */
+.hg-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hg-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 40px rgba(8, 48, 72, 0.12),
+    0 0 0 1px rgba(14, 165, 183, 0.2);
+}
+
+/* Enhanced hg-card animations */
+.hg-card {
+  animation: hg-card-entrance 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.88) 50%,
+      rgba(240, 250, 255, 0.92) 100%
+    );
+  border: 1px solid rgba(14, 165, 183, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .hg-card {
+  background: 
+    linear-gradient(135deg, 
+      rgba(15, 30, 46, 0.95) 0%, 
+      rgba(15, 30, 46, 0.88) 50%,
+      rgba(20, 40, 60, 0.92) 100%
+    );
+  border: 1px solid rgba(34, 211, 238, 0.25);
+}
+
+.hg-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--hydro-deep), var(--hydro-primary), var(--hydro-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hg-card:hover::before {
+  opacity: 1;
+}
+
+.hg-card:hover {
+  border-color: rgba(14, 165, 183, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(8, 48, 72, 0.12),
+    0 0 0 1px rgba(14, 165, 183, 0.2),
+    0 0 20px rgba(14, 165, 183, 0.1);
+}
+
+[data-theme="dark"] .hg-card:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(34, 211, 238, 0.3),
+    0 0 20px rgba(34, 211, 238, 0.2);
+}
+
+@keyframes hg-card-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Staggered hg-grid animations */
+.hg-grid .hg-card:nth-child(1) { animation-delay: 0.1s; }
+.hg-grid .hg-card:nth-child(2) { animation-delay: 0.15s; }
+.hg-grid .hg-card:nth-child(3) { animation-delay: 0.2s; }
+.hg-grid .hg-card:nth-child(4) { animation-delay: 0.25s; }
+.hg-grid .hg-card:nth-child(5) { animation-delay: 0.3s; }
+.hg-grid .hg-card:nth-child(6) { animation-delay: 0.35s; }
+
+/* Water ripple on hg-card hover */
+.hg-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+  pointer-events: none;
+}
+
+.hg-card:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Fluid input focus effect */
+input:focus,
+select:focus {
+  box-shadow: 
+    0 0 0 3px rgba(14, 165, 183, 0.2),
+    0 0 20px rgba(14, 165, 183, 0.1);
+  animation: input-focus-ripple 0.3s ease;
+}
+
+@keyframes input-focus-ripple {
+  0% {
+    box-shadow: 
+      0 0 0 0px rgba(14, 165, 183, 0.4),
+      0 0 0 0px rgba(14, 165, 183, 0.2);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 3px rgba(14, 165, 183, 0.2),
+      0 0 20px rgba(14, 165, 183, 0.1);
+  }
+}
+
+/* Input field water effect on focus */
+input:focus::placeholder,
+select:focus::placeholder {
+  color: var(--hydro-primary);
+  transition: color 0.3s ease;
+}
+
+/* Sidebar nav link hover with water effect */
+.sidebar-nav a:hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-nav a:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(46, 211, 198, 0.2),
+    transparent
+  );
+  animation: sidebar-link-flow 0.6s ease;
+}
+
+[data-theme="dark"] .sidebar-nav a:hover::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 211, 238, 0.3),
+    transparent
+  );
+}
+
+@keyframes sidebar-link-flow {
+  to {
+    left: 100%;
+  }
+}
+
+/* Dark mode sidebar text enhancement */
+[data-theme="dark"] .sidebar-nav a {
+  color: rgba(163, 206, 222, 0.95);
+}
+
+[data-theme="dark"] .sidebar-nav a:hover {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sidebar-nav a.active {
+  color: #ffffff;
+  background: rgba(34, 211, 238, 0.25);
+}
+
+[data-theme="dark"] .sidebar-profile-text strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sidebar-profile-text small {
+  color: rgba(163, 206, 222, 0.85);
+}
+
+/* Avatar chip with water glow */
+.avatar-chip {
+  box-shadow: 0 0 12px var(--hydro-glow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.avatar-chip:hover {
+  box-shadow: 0 0 20px var(--hydro-glow);
+  transform: scale(1.05);
+}
+
+/* Enhanced sidebar profile hover */
+.sidebar-profile:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, transform 0.3s ease;
+  transform: translateX(3px);
+}
+
+/* Page content entrance animation */
+.page-content {
+  animation: page-fade-in 0.5s ease-out;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero section enhanced animation */
+.hg-hero {
+  animation: hero-entrance 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes hero-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Smooth page transitions */
+.page-stack > * {
+  animation: element-fade-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.page-stack > *:nth-child(1) { animation-delay: 0.1s; }
+.page-stack > *:nth-child(2) { animation-delay: 0.2s; }
+.page-stack > *:nth-child(3) { animation-delay: 0.3s; }
+.page-stack > *:nth-child(4) { animation-delay: 0.4s; }
+.page-stack > *:nth-child(5) { animation-delay: 0.5s; }
+.page-stack > *:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes element-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced topbar with subtle water effect */
+.topbar {
+  position: relative;
+}
+
+.topbar::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(14, 165, 183, 0.3),
+    transparent
+  );
+}
+
+[data-theme="dark"] .topbar {
+  background: rgba(15, 30, 46, 0.9);
+  border-bottom-color: rgba(34, 211, 238, 0.2);
+}
+
+[data-theme="dark"] .topbar::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 211, 238, 0.4),
+    transparent
+  );
+}
+
+[data-theme="dark"] .topbar-title {
+  color: rgba(163, 206, 222, 0.9);
+}
+
+[data-theme="dark"] .topbar-profile {
+  background: rgba(15, 30, 46, 0.9);
+  border-color: rgba(34, 211, 238, 0.2);
+  color: rgba(163, 206, 222, 0.95);
+}
+
+[data-theme="dark"] .dot-label.online {
+  color: rgba(163, 206, 222, 0.9);
+}
+
+[data-theme="dark"] .dot-label.online span {
+  background: var(--hydro-accent);
+  box-shadow: 0 0 8px var(--hydro-glow);
+}
+
+/* Chip indicators with enhanced glow */
+.hg-chip-live::before {
+  box-shadow: 0 0 8px currentColor;
+}
+
+.hg-chip-ok {
+  box-shadow: 0 0 6px rgba(22, 163, 74, 0.3);
+}
+
+.hg-chip-warn {
+  box-shadow: 0 0 6px rgba(217, 119, 6, 0.3);
+}
+
+.hg-chip-danger {
+  box-shadow: 0 0 6px rgba(220, 38, 38, 0.3);
+}
+
+.hg-chip-info {
+  box-shadow: 0 0 6px rgba(14, 165, 183, 0.3);
+}
+
+/* Meter with animated water flow */
+.hg-meter > span {
+  background: linear-gradient(
+    90deg,
+    var(--hydro-deep),
+    var(--hydro-primary),
+    var(--hydro-accent)
+  );
+  background-size: 200% 100%;
+  animation: meter-flow 2s linear infinite;
+}
+
+@keyframes meter-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* Hero badges with enhanced glow */
+.hg-hero-badges .hg-chip {
+  transition: all 0.3s ease;
+}
+
+.hg-hero-badges .hg-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(14, 165, 183, 0.3);
+}
+
+/* Strip with water hover effect */
+.hg-strip > *:hover {
+  background: linear-gradient(
+    135deg,
+    var(--hg-surface),
+    rgba(14, 165, 183, 0.08)
+  );
+}
+
+/* Table with subtle water effect */
+.hg-tablewrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.hg-tablewrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(14, 165, 183, 0.4),
+    transparent
+  );
+}
+
+/* Enhanced theme toggle */
+.theme-toggle-enhanced {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .theme-toggle-enhanced {
+  background: rgba(15, 30, 46, 0.9);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-enhanced:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(14, 165, 183, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle-enhanced:hover {
+  box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3);
+}
+
+.theme-toggle-track {
+  width: 52px;
+  height: 28px;
+  background: linear-gradient(135deg, #e0e7ec, #c5d1d9);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .theme-toggle-track {
+  background: linear-gradient(135deg, #1a3a4a, #0d2838);
+}
+
+.theme-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #ffffff, #f0f7fa);
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .theme-toggle-thumb {
+  background: linear-gradient(135deg, #22d3ee, #0891b2);
+  transform: translateX(24px);
+  box-shadow: 0 2px 8px rgba(34, 211, 238, 0.4);
+}
+
+.theme-icon {
+  font-size: 12px;
+  line-height: 1;
+  animation: icon-rotate 0.5s ease;
+}
+
+@keyframes icon-rotate {
+  from {
+    transform: rotate(-180deg) scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.theme-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .theme-label {
+  color: rgba(163, 206, 222, 0.9);
+}
+
+.theme-toggle-enhanced:hover .theme-label {
+  color: var(--hydro-primary);
+}
+
+[data-theme="dark"] .theme-toggle-enhanced:hover .theme-label {
+  color: var(--hydro-accent);
+}
+
+/* Ripple effect on theme toggle */
+.theme-toggle-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(14, 165, 183, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.theme-toggle-enhanced:active::before {
+  width: 100px;
+  height: 100px;
+}
+
+[data-theme="dark"] .theme-toggle-enhanced::before {
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%);
+}
+
+/* Enhanced typography with water theme */
+h1, h2, h3 {
+  position: relative;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+  color: var(--hydro-light);
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--hydro-deep), var(--hydro-primary), var(--hydro-accent));
+  border-radius: 2px;
+  animation: heading-underline 0.6s ease-out;
+}
+
+@keyframes heading-underline {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80px;
+  }
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--hydro-primary), var(--hydro-accent));
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+.eyebrow {
+  background: linear-gradient(135deg, var(--hydro-deep), var(--hydro-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+[data-theme="dark"] .eyebrow {
+  background: linear-gradient(135deg, var(--hydro-accent), var(--hydro-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.eyebrow::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--hydro-deep), var(--hydro-accent));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .eyebrow::after {
+  transform: scaleX(1);
+}
+
+/* Enhanced metric styling */
+.metric {
+  background: linear-gradient(135deg, var(--ink), var(--hydro-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+[data-theme="dark"] .metric {
+  background: linear-gradient(135deg, var(--hydro-light), var(--hydro-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metric::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(180deg, var(--hydro-accent), var(--hydro-deep));
+  border-radius: 2px;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-card:hover .metric::before {
+  opacity: 1;
+}
+
+/* Enhanced paragraph text */
+.card p {
+  line-height: 1.7;
+  color: var(--muted);
+  position: relative;
+}
+
+[data-theme="dark"] .card p {
+  color: rgba(163, 206, 222, 0.85);
+}
+
+.card p::first-letter {
+  font-weight: 700;
+  color: var(--hydro-primary);
+  font-size: 1.1em;
+}
+
+[data-theme="dark"] .card p::first-letter {
+  color: var(--hydro-accent);
+}
+
+/* Strong text enhancement */
+.card strong {
+  color: var(--hydro-deep);
+  position: relative;
+}
+
+[data-theme="dark"] .card strong {
+  color: var(--hydro-light);
+}
+
+.card strong::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--hydro-primary), transparent);
+  opacity: 0.3;
+}
+
+[data-theme="dark"] .card strong::after {
+  background: linear-gradient(90deg, var(--hydro-accent), transparent);
+  opacity: 0.5;
+}

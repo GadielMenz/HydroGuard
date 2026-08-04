@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" role="img" aria-label="HydroGuard">
+  <rect width="128" height="128" rx="28" fill="#04324A"/>
+  <path d="M64 18L98 36V68C98 90 82 108 64 114C46 108 30 90 30 68V36L64 18Z" fill="#0B4F6C"/>
+  <path d="M64 28L90 42V68C90 85 78 99 64 104C50 99 38 85 38 68V42L64 28Z" fill="#126B8A"/>
+  <path d="M64 40C64 40 52 56 52 66C52 73 57.5 78 64 78C70.5 78 76 73 76 66C76 56 64 40 64 40Z" fill="#2ED3C6"/>
+  <path d="M64 48C64 48 57 58 57 65C57 69 60 72 64 72C68 72 71 69 71 65C71 58 64 48 64 48Z" fill="#A8F0EA"/>
+  <path d="M42 86C48 80 56 77 64 77C72 77 80 80 86 86" stroke="#5EEAD4" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M46 94C52 90 58 88 64 88C70 88 76 90 82 94" stroke="#1AB0C8" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+</svg>
