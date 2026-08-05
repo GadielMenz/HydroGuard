@@ -1380,28 +1380,27 @@ th {
   }
 }
 
-  .profile-badges {
-    margin-left: 0;
-  }
+.profile-badges {
+  margin-left: 0;
+}
 
-  .auth-page {
-    grid-template-columns: 1fr;
-  }
+.auth-page {
+  grid-template-columns: 1fr;
+}
 
-  .auth-brand {
-    min-height: auto;
-    padding: 1.75rem 1.5rem;
-    gap: 1.5rem;
-  }
+.auth-brand {
+  min-height: auto;
+  padding: 1.75rem 1.5rem;
+  gap: 1.5rem;
+}
 
-  .auth-brand-copy h1 {
-    font-size: 1.75rem;
-    max-width: none;
-  }
+.auth-brand-copy h1 {
+  font-size: 1.75rem;
+  max-width: none;
+}
 
-  .auth-brand-footer {
-    display: none;
-  }
+.auth-brand-footer {
+  display: none;
 }
 
 /* ——— Flow Mode Banner & Tank Visual Enhancements ——— */
